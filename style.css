@@ -213,3 +213,62 @@ body {
     .nav-menu li { margin: 20px 0; text-align: center; }
     .about-container { flex-direction: column; }
 }
+/* ==========================================
+   ADD-ON STYLES (PURE VISUAL INTERFACE COAT)
+   ========================================== */
+#custom-cart-panel {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.cart-panel-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 480px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.close-panel-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 28px; cursor: pointer; color: #333;
+}
+.panel-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+.item-qty-controls button {
+    background: #7c2d12; color: #fff; border: none;
+    padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.item-qty-controls span { margin: 0 8px; font-weight: bold; }
+.panel-total-row { font-size: 1.2rem; margin: 20px 0; text-align: right; color: #7c2d12; }
+#checkout-details-form input {
+    width: 100%; padding: 10px; margin-bottom: 12px;
+    border: 1px solid #ccc; border-radius: 4px;
+}
+.pay-options { margin: 10px 0 20px; }
+.pay-options label { display: block; margin-bottom: 8px; cursor: pointer; }
+.submit-order-btn {
+    width: 100%; background: #25D366; color: #fff; border: none;
+    padding: 12px; font-size: 1rem; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+#custom-review-container {
+    background: #fff; padding: 25px; max-width: 500px;
+    margin: 40px auto 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+#custom-review-container h3 { margin-bottom: 15px; color: #7c2d12; text-align: center; }
+#custom-review-container input, #custom-review-container select, #custom-review-container textarea {
+    width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ddd; border-radius: 4px;
+}
