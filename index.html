@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGILA COFFEE</title>
+    <title>Responsive Coffee Shop Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,13 +12,14 @@
     <header class="header">
         <nav class="navbar">
             <a href="#" class="logo">
-                <i class="fas fa-coffee"></i> REGILA<span> COFFEE</span>
+                <i class="fas fa-coffee"></i> Coffee<span>Beans</span>
             </a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -50,23 +51,23 @@
     <section class="menu" id="menu">
         <h2 class="section-title">Our Popular Menu</h2>
         <div class="menu-grid">
-            <div class="menu-item" data-name="Hot Caffe Latte" data-price="4.50">
+            <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400" alt="Hot Latte">
                 <h3>Hot Caffe Latte</h3>
                 <p class="price">$4.50</p>
-                <button class="pay-btn">Order & Pay</button>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="menu-item" data-name="Cappuccino" data-price="4.99">
+            <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=400" alt="Cappuccino">
                 <h3>Cappuccino</h3>
                 <p class="price">$4.99</p>
-                <button class="pay-btn">Order & Pay</button>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
-            <div class="menu-item" data-name="Espresso Shot" data-price="3.00">
+            <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400" alt="Espresso">
                 <h3>Espresso Shot</h3>
                 <p class="price">$3.00</p>
-                <button class="pay-btn">Order & Pay</button>
+                <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -85,7 +86,12 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2026 REGILA COFFEE. All rights reserved.</p>
+        <p>&copy; 2026 CoffeeBeans Shop. All rights reserved.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
     </footer>
 
     <script src="script.js"></script>
