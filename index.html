@@ -6,6 +6,37 @@
     <title>Responsive Coffee Shop Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* ==========================================================================
+           ADD-ON STYLES (Keeps everything clean without modifying style.css)
+           ========================================================================== */
+        .menu-category-title {
+            font-size: 1.8rem; color: var(--primary-color);
+            margin: 40px 0 15px; border-left: 5px solid var(--primary-color); padding-left: 10px;
+        }
+        #custom-cart-panel {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); z-index: 9999; display: none;
+            justify-content: center; align-items: center;
+        }
+        .cart-panel-content {
+            background: #fff; padding: 25px; border-radius: 8px; width: 90%;
+            max-width: 480px; max-height: 85vh; overflow-y: auto; position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); color: #333; text-align: left;
+        }
+        .close-panel-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer; }
+        .panel-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .item-qty-controls button { background: #7c2d12; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .item-qty-controls span { margin: 0 8px; font-weight: bold; }
+        .panel-total-row { font-size: 1.2rem; margin: 20px 0; text-align: right; color: #7c2d12; }
+        #checkout-details-form h3, #custom-review-container h3 { margin: 15px 0 10px; color: #7c2d12; font-size: 1.2rem; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+        #checkout-details-form input, #custom-review-container input, #custom-review-container select, #custom-review-container textarea {
+            width: 100%; padding: 10px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; display: block;
+        }
+        .pay-options label { display: block; margin-bottom: 8px; cursor: pointer; font-size: 14px; }
+        .submit-order-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 12px; font-size: 1rem; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        #custom-review-container { background: #fff; padding: 25px; max-width: 600px; margin: 40px auto 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left; }
+    </style>
 </head>
 <body>
 
@@ -41,9 +72,10 @@
                 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600" alt="About Our Coffee">
             </div>
             <div class="about-content">
-                <h2>Freshly Brewed For Your Senses</h2>
-                <p>We pride ourselves on sourcing the highest quality organic coffee beans. Our expert roasters and baristas craft every cup with care, delivering a smooth flavor profiling that leaves you wanting more.</p>
-                <a href="#" class="btn">Read More</a>
+                <h2>Our Story: Sourced by Passion, Roasted by Art</h2>
+                <p>It all began in the winter of 2018 in a small kitchen corner with nothing but an old popcorn popper, a handful of green coffee beans, and an uncompromising dream to hunt down the perfect morning cup. What started as an individual obsession with roasting times and crack cycles quickly turned into an absolute mission to bring souls together over genuinely remarkable coffee environments.</p>
+                <p>We traveled across steep misty valleys to partner directly with local micro-lot family farms, ensuring our beans are sustainably harvested by hand and ethically traded. Today, our master roasters listen intently to the distinct 'first crack' of the heating profile cycles daily, unlocking hidden flavor signatures of caramelized cane sugar, bright citrus zest, and rich velvety dark cacao chocolate. Every single pour, every meticulous grind, and every warm cup we serve is a chapter of that ongoing story—crafted purposefully for your senses.</p>
+                <a href="#menu" class="btn">Explore Our Creations</a>
             </div>
         </div>
     </section>
@@ -195,25 +227,4 @@
                 <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=400" alt="Masala Chai">
                 <h3>Desi Masala Chai</h3>
                 <p class="price">₹60</p>
-                <button class="add-to-cart" data-name="Desi Masala Chai" data-price="60" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?q=80&w=400" alt="Green Tea">
-                <h3>Organic Pure Green Tea</h3>
-                <p class="price">₹90</p>
-                <button class="add-to-cart" data-name="Organic Pure Green Tea" data-price="90" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-            <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=400" alt="Lemon Tea">
-                <h3>Honey Lemon Ginger Tea</h3>
-                <p class="price">₹100</p>
-                <button class="add-to-cart" data-name="Honey Lemon Ginger Tea" data-price="100" onclick="addToCart(this)">Add to Cart</button>
-            </div>
-            <div class="menu-item">
-                <img src="
-<script src="script.js"></script>
-
-    <a id="email-router" href="mailto:dhruvagarwal643@gmail.com" style="display:none;"></a>
-    <script src="add-on.js"></script>
-</body>
-</html>
+                <button class="add-to-cart" data-name="Desi Masala Chai" data-price="60" onclick="addToCart
