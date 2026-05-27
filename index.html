@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Coffee Shop Website</title>
+    <title>REGILA COFFEE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,17 +12,22 @@
     <header class="header">
         <nav class="navbar">
             <a href="#" class="logo">
-                <i class="fas fa-coffee"></i> Coffee<span>Beans</span>
+                <i class="fas fa-coffee"></i> REGILA<span> COFFEE</span>
             </a>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="nav-icons">
+                <div class="cart-icon" id="cart-icon-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </nav>
     </header>
@@ -35,63 +40,49 @@
         </div>
     </section>
 
-    <section class="about" id="about">
-        <div class="about-container">
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600" alt="About Our Coffee">
-            </div>
-            <div class="about-content">
-                <h2>Freshly Brewed For Your Senses</h2>
-                <p>We pride ourselves on sourcing the highest quality organic coffee beans. Our expert roasters and baristas craft every cup with care, delivering a smooth flavor profiling that leaves you wanting more.</p>
-                <a href="#" class="btn">Read More</a>
-            </div>
-        </div>
-    </section>
-
     <section class="menu" id="menu">
         <h2 class="section-title">Our Popular Menu</h2>
         <div class="menu-grid">
-            <div class="menu-item">
+            <div class="menu-item" data-id="1" data-name="Hot Caffe Latte" data-price="4.50">
                 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400" alt="Hot Latte">
                 <h3>Hot Caffe Latte</h3>
                 <p class="price">$4.50</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" data-id="2" data-name="Cappuccino" data-price="4.99">
                 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=400" alt="Cappuccino">
                 <h3>Cappuccino</h3>
                 <p class="price">$4.99</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" data-id="3" data-name="Espresso Shot" data-price="3.00">
                 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400" alt="Espresso">
                 <h3>Espresso Shot</h3>
                 <p class="price">$3.00</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart-btn">Add to Cart</button>
             </div>
         </div>
     </section>
 
-    <section class="testimonials" id="testimonials">
-        <h2 class="section-title">Customer Reviews</h2>
-        <div class="testimonial-container">
-            <div class="testimonial-card">
-                <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p>"The best espresso in town! The aroma alone resets my mind for a productive day."</p>
-                <h4>- Sarah Jenkins</h4>
-            </div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <i class="fas fa-times close-cart" id="close-cart-btn"></i>
         </div>
-    </section>
+        <div class="cart-items-container">
+            </div>
+        <div class="cart-footer">
+            <div class="total-price-container">
+                <span>Total:</span>
+                <span class="cart-total-amount">$0.00</span>
+            </div>
+            <button class="checkout-btn" id="checkout-payment-btn">Proceed to Payment</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
 
     <footer class="footer">
-        <p>&copy; 2026 CoffeeBeans Shop. All rights reserved.</p>
-        <div class="socials">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
+        <p>&copy; 2026 REGILA COFFEE. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
