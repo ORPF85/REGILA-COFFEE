@@ -36,6 +36,19 @@
         .pay-options label { display: block; margin-bottom: 8px; cursor: pointer; font-size: 14px; }
         .submit-order-btn { width: 100%; background: #25D366; color: #fff; border: none; padding: 12px; font-size: 1rem; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; }
         #custom-review-container { background: #fff; padding: 25px; max-width: 600px; margin: 40px auto 0; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left; }
+        
+        /* Floating Cart Notification Button style */
+        .floating-cart-trigger {
+            position: fixed; bottom: 25px; right: 25px; background: #7c2d12; color: #fff;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 999; transition: transform 0.2s;
+        }
+        .floating-cart-trigger:hover { transform: scale(1.1); }
+        .cart-badge {
+            position: absolute; top: -5px; right: -5px; background: #ff3333; color: white;
+            font-size: 12px; padding: 3px 7px; border-radius: 50%; font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -227,4 +240,207 @@
                 <img src="https://images.unsplash.com/photo-1563822249548-9a72b6353cd1?q=80&w=400" alt="Masala Chai">
                 <h3>Desi Masala Chai</h3>
                 <p class="price">₹60</p>
-                <button class="add-to-cart" data-name="Desi Masala Chai" data-price="60" onclick="addToCart
+                <button class="add-to-cart" data-name="Desi Masala Chai" data-price="60" onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="floating-cart-trigger" onclick="toggleCartPanel(true)">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cart-counter-badge">0</span>
+    </div>
+
+    <div id="custom-cart-panel">
+        <div class="cart-panel-content">
+            <span class="close-panel-btn" onclick="toggleCartPanel(false)">&times;</span>
+            <h2 style="color:#7c2d12; margin-bottom:15px;"><i class="fas fa-shopping-basket"></i> Your Cart Orders</h2>
+            
+            <div id="panel-items-container">
+                <p style="text-align:center; color:#777; padding:20px 0;">Your shopping cart is currently empty!</p>
+            </div>
+            
+            <div class="panel-total-row">
+                <strong>Grand Total: ₹<span id="panel-calculated-total">0</span></strong>
+            </div>
+
+            <form id="checkout-details-form" onsubmit="processOrderCheckout(event)">
+                <h3><i class="fas fa-user-edit"></i> Shipping & Contact Details</h3>
+                <input type="text" id="customer-name" placeholder="Full Name" required>
+                <input type="tel" id="customer-phone" placeholder="Phone Number" required>
+                <input type="text" id="customer-address" placeholder="Delivery Address / Table Number" required>
+
+                <h3><i class="fas fa-credit-card"></i> Selected Payment Option</h3>
+                <div class="pay-options">
+                    <label><input type="radio" name="payment-method" value="Cash / Pay at Table" checked> Cash / Pay at Counter or Table</label>
+                    <label><input type="radio" name="payment-method" value="UPI Scan"> Instant Digital UPI Payment QR</label>
+                    <label><input type="radio" name="payment-method" value="Card Payment"> Credit or Debit Cards Option</label>
+                </div>
+                
+                <button type="submit" class="submit-order-btn"><i class="fab fa-whatsapp"></i> Dispatch Order Request</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="testimonials">
+        <div id="custom-review-container">
+            <form id="review-submission-form" onsubmit="handleReviewSubmission(event)">
+                <h3><i class="fas fa-star"></i> Leave an Authentic Guest Review</h3>
+                <input type="text" id="reviewer-name" placeholder="Your Name" required>
+                <select id="review-rating" required>
+                    <option value="" disabled selected>Select Stars Rating</option>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent (5 Stars)</option>
+                    <option value="4">⭐⭐⭐⭐ Great Experience (4 Stars)</option>
+                    <option value="3">⭐⭐⭐ Average (3 Stars)</option>
+                    <option value="2">⭐⭐ Fair (2 Stars)</option>
+                    <option value="1">⭐ Poor (1 Star)</option>
+                </select>
+                <textarea id="reviewer-text" rows="4" placeholder="Share your experience about our premium roast beans and atmosphere..." required></textarea>
+                <button type="submit" class="submit-order-btn" style="background:#7c2d12;"><i class="fas fa-paper-plane"></i> Submit Feedback Review</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Global State Management Engine Arrays
+        let shoppingCartItemsState = [];
+
+        // Hamburger Menu toggle fallback logic
+        const hamburgerBtn = document.querySelector('.hamburger');
+        const navMenuWrapper = document.querySelector('.nav-menu');
+        if(hamburgerBtn && navMenuWrapper) {
+            hamburgerBtn.addEventListener('click', () => {
+                navMenuWrapper.classList.toggle('active');
+            });
+        }
+
+        // Cart Utility UI Toggles
+        function toggleCartPanel(shouldOpen) {
+            const panel = document.getElementById('custom-cart-panel');
+            panel.style.display = shouldOpen ? 'flex' : 'none';
+        }
+
+        // Add item to Cart Core Array Process
+        function addToCart(buttonElement) {
+            const name = buttonElement.getAttribute('data-name');
+            const price = parseInt(buttonElement.getAttribute('data-price'), 10);
+
+            // Locate existing array matches
+            const matchingItem = shoppingCartItemsState.find(item => item.name === name);
+
+            if (matchingItem) {
+                matchingItem.quantity += 1;
+            } else {
+                shoppingCartItemsState.push({ name: name, price: price, quantity: 1 });
+            }
+
+            renderUpdatedCartUI();
+            
+            // Subtle visual action prompt alert response confirmation feedback
+            buttonElement.innerText = "Added ✓";
+            buttonElement.style.background = "#25D366";
+            setTimeout(() => {
+                buttonElement.innerText = "Add to Cart";
+                buttonElement.style.background = "";
+            }, 800);
+        }
+
+        // Adjust active structural quantities values counts inside operations
+        function updateItemQuantity(itemName, deltaAmount) {
+            const targetingItem = shoppingCartItemsState.find(item => item.name === itemName);
+            if (!targetingItem) return;
+
+            targetingItem.quantity += deltaAmount;
+
+            // Purge item cleanly if counter hits 0
+            if (targetingItem.quantity <= 0) {
+                shoppingCartItemsState = shoppingCartItemsState.filter(item => item.name !== itemName);
+            }
+
+            renderUpdatedCartUI();
+        }
+
+        // Synchronize and re-render the Shopping Cart UI Elements state structures
+        function renderUpdatedCartUI() {
+            const container = document.getElementById('panel-items-container');
+            const totalDisplay = document.getElementById('panel-calculated-total');
+            const badgeCounter = document.getElementById('cart-counter-badge');
+
+            if (shoppingCartItemsState.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#777; padding:20px 0;">Your shopping cart is currently empty!</p>`;
+                totalDisplay.innerText = "0";
+                badgeCounter.innerText = "0";
+                return;
+            }
+
+            let computedTotal = 0;
+            let computedItemCount = 0;
+            container.innerHTML = ""; // Wipe container markup clean for updates
+
+            shoppingCartItemsState.forEach(item => {
+                computedTotal += (item.price * item.quantity);
+                computedItemCount += item.quantity;
+
+                const itemRowHTML = `
+                    <div class="panel-item-row">
+                        <div>
+                            <h4 style="margin:0; font-size:14px;">${item.name}</h4>
+                            <small style="color:#666;">₹${item.price} each</small>
+                        </div>
+                        <div class="item-qty-controls">
+                            <button type="button" onclick="updateItemQuantity('${item.name}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button type="button" onclick="updateItemQuantity('${item.name}', 1)">+</button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', itemRowHTML);
+            });
+
+            totalDisplay.innerText = computedTotal;
+            badgeCounter.innerText = computedItemCount;
+        }
+
+        // Process final Form Actions Order submissions validation
+        function processOrderCheckout(event) {
+            event.preventDefault();
+
+            if (shoppingCartItemsState.length === 0) {
+                alert("Your shopping cart must contain items before finalizing the order!");
+                return;
+            }
+
+            const name = document.getElementById('customer-name').value;
+            const phone = document.getElementById('customer-phone').value;
+            const location = document.getElementById('customer-address').value;
+            const selectedPayment = document.querySelector('input[name="payment-method"]:checked').value;
+
+            // Generate an organized receipt log string 
+            let itemsReceiptString = shoppingCartItemsState.map(i => `• ${i.name} (x${i.quantity})`).join('\n');
+            let overallSum = document.getElementById('panel-calculated-total').innerText;
+
+            const finalPromptMessage = `Order Confirmed Successfully!\n\nCustomer: ${name}\nContact: ${phone}\nDestination: ${location}\nPayment Setup: ${selectedPayment}\n\nItems ordered:\n${itemsReceiptString}\n\nTotal Paid: ₹${overallSum}`;
+            
+            alert(finalPromptMessage);
+
+            // Wipe environment structures clean following execution cycles
+            shoppingCartItemsState = [];
+            document.getElementById('checkout-details-form').reset();
+            renderUpdatedCartUI();
+            toggleCartPanel(false);
+        }
+
+        // Review Form Submission Logic Engine Pipeline
+        function handleReviewSubmission(event) {
+            event.preventDefault();
+            
+            const reviewerName = document.getElementById('reviewer-name').value;
+            const selectedStars = document.getElementById('review-rating').value;
+            const reviewComment = document.getElementById('reviewer-text').value;
+
+            alert(`Thank you, ${reviewerName}! Your feedback review (${selectedStars} Stars) has been recorded successfully for approval layout processes.`);
+            
+            document.getElementById('review-submission-form').reset();
+        }
+    </script>
+</body>
+</html>
