@@ -109,7 +109,7 @@ function processCheckout() {
     orderText += `\n💳 *Payment Method:* ${selectedMethod.toUpperCase()}`;
     
     // CONFIGURE: Replace this line with your own active phone country line string
-    const shopOwnerPhone = "1234567890"; // <- Put your actual number here!
+    const shopOwnerPhone = "919258856577"; // <- Put your actual number here!
     
     alert(`Order captured! Opening dispatcher channel to forward request data directly to the owner via WhatsApp...`);
     
