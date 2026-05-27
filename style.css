@@ -196,14 +196,16 @@ body {
     right: -5px;
 }
 
-/* Button animation state when clicked */
-.add-to-cart-btn {
+/* ========================================== */
+/* FIXED: Button animation state when clicked */
+/* ========================================== */
+.add-to-cart {
     transition: all 0.3s ease;
 }
-.add-to-cart-btn.added {
-    background-color: #4a3323 !important; 
-    color: #dcdcdc;
-    pointer-events: none; 
+.add-to-cart.added {
+    background-color: #4a3323 !important; /* Turns into dark interactive brown */
+    color: #dcdcdc !important;
+    pointer-events: none; /* Prevents double clicks during animation */
     transform: scale(0.95);
 }
 
