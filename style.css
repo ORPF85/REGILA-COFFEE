@@ -1,0 +1,166 @@
+/* General Styling Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary-color: #7c2d12;
+    --secondary-color: #fed7aa;
+    --dark-color: #1c1917;
+    --light-color: #fafaf9;
+}
+
+body {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #9a3412;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 40px 0;
+    color: var(--primary-color);
+}
+
+/* Navbar styles */
+.header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background-color: rgba(28, 25, 23, 0.95);
+    z-index: 1000;
+    padding: 15px 5%;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo span { color: var(--secondary-color); }
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover { color: var(--secondary-color); }
+
+.hamburger {
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.hero-content {
+    max-width: 600px;
+    color: #fff;
+}
+
+.hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+.hero-content p { font-size: 1.1rem; margin-bottom: 30px; color: #e7e5e4; }
+
+/* About Section */
+.about { padding: 80px 10%; }
+.about-container { display: flex; align-items: center; gap: 40px; }
+.about-image img { width: 100%; max-width: 500px; border-radius: 8px; }
+.about-content h2 { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+.about-content p { line-height: 1.7; margin-bottom: 20px; color: #444; }
+
+/* Menu Section */
+.menu { padding: 40px 10% 80px; }
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.menu-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
+.menu-item h3 { margin: 15px 0 10px; }
+.menu-item .price { color: var(--primary-color); font-weight: bold; margin-bottom: 15px; }
+.menu-item .add-to-cart {
+    background: var(--primary-color); color: #fff; border: none;
+    padding: 8px 16px; border-radius: 4px; cursor: pointer;
+}
+
+/* Testimonials Section */
+.testimonials { padding: 40px 10% 80px; background: #f5f5f4; }
+.testimonial-container { display: flex; justify-content: center; }
+.testimonial-card {
+    background: #fff; padding: 30px; border-radius: 8px;
+    max-width: 500px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.stars { color: #f59e0b; margin-bottom: 15px; }
+.testimonial-card p { font-style: italic; margin-bottom: 15px; color: #555; }
+
+/* Footer Section */
+.footer {
+    background: var(--dark-color); color: #a8a29e;
+    text-align: center; padding: 30px;
+}
+.footer .socials { margin-top: 15px; }
+.footer .socials a { color: #fff; margin: 0 10px; font-size: 1.2rem; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hamburger { display: block; }
+    .nav-menu {
+        position: absolute; top: 100%; right: -100%; width: 250px; height: 100vh;
+        background: var(--dark-color); flex-direction: column; padding-top: 40px;
+        transition: 0.3s ease;
+    }
+    .nav-menu.active { right: 0; }
+    .nav-menu li { margin: 20px 0; text-align: center; }
+    .about-container { flex-direction: column; }
+}
