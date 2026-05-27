@@ -164,3 +164,110 @@ body {
     .nav-menu li { margin: 20px 0; text-align: center; }
     .about-container { flex-direction: column; }
 }
+/* ========================================== */
+/* CART & ANIMATION STYLES                     */
+/* ========================================== */
+
+/* Floating Cart Sticky Button */
+#floating-cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #6F4E37; /* Coffee Brown */
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#floating-cart:hover { transform: scale(1.1); }
+#cart-count {
+    background: #ff4d4d;
+    border-radius: 50%;
+    padding: 2px 7px;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+}
+
+/* Button animation state when clicked */
+.add-to-cart-btn {
+    transition: all 0.3s ease;
+}
+.add-to-cart-btn.added {
+    background-color: #4a3323 !important; 
+    color: #dcdcdc;
+    pointer-events: none; 
+    transform: scale(0.95);
+}
+
+/* Flying bubble animation effect */
+.flying-item {
+    position: fixed;
+    background: #6F4E37;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    z-index: 9999;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Pop-up Window (Modal) Background Overlay */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    font-family: sans-serif;
+    color: #333;
+}
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 30px; cursor: pointer;
+}
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.payment-method {
+    margin: 20px 0;
+    text-align: left;
+}
+.payment-option {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+}
+#checkout-btn {
+    width: 100%;
+    background-color: #6F4E37;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+#checkout-btn:hover { background-color: #563d2b; }
