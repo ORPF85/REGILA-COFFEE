@@ -17,6 +17,7 @@
 body {
     background-color: var(--light-color);
     color: var(--dark-color);
+    position: relative;
 }
 
 .btn {
@@ -128,9 +129,24 @@ body {
 .menu-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 5px; }
 .menu-item h3 { margin: 15px 0 10px; }
 .menu-item .price { color: var(--primary-color); font-weight: bold; margin-bottom: 15px; }
+
+/* Fixed active transitions for standard button selector */
 .menu-item .add-to-cart {
-    background: var(--primary-color); color: #fff; border: none;
-    padding: 8px 16px; border-radius: 4px; cursor: pointer;
+    background: var(--primary-color); 
+    color: #fff; 
+    border: none;
+    padding: 8px 16px; 
+    border-radius: 4px; 
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ====== INTERACTIVE STATE CHANGES ====== */
+.menu-item .add-to-cart.added {
+    background-color: #4a3323 !important; /* Turns Brown */
+    color: #dcdcdc !important;
+    pointer-events: none; 
+    transform: scale(0.95);
 }
 
 /* Testimonials Section */
@@ -164,8 +180,9 @@ body {
     .nav-menu li { margin: 20px 0; text-align: center; }
     .about-container { flex-direction: column; }
 }
+
 /* ========================================== */
-/* CART & ANIMATION STYLES                     */
+/* CART & ANIMATION MODAL STYLES              */
 /* ========================================== */
 
 /* Floating Cart Sticky Button */
@@ -173,17 +190,19 @@ body {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #6F4E37; /* Coffee Brown */
+    background-color: #6F4E37; 
     color: white;
     padding: 15px;
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
+    z-index: 1001; /* Above standard overlays */
     transition: transform 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 55px;
+    height: 55px;
 }
 #floating-cart:hover { transform: scale(1.1); }
 #cart-count {
@@ -196,33 +215,21 @@ body {
     right: -5px;
 }
 
-/* ========================================== */
-/* FIXED: Button animation state when clicked */
-/* ========================================== */
-.add-to-cart {
-    transition: all 0.3s ease;
-}
-.add-to-cart.added {
-    background-color: #4a3323 !important; /* Turns into dark interactive brown */
-    color: #dcdcdc !important;
-    pointer-events: none; /* Prevents double clicks during animation */
-    transform: scale(0.95);
-}
-
 /* Flying bubble animation effect */
 .flying-item {
-    position: fixed;
+    position: absolute;
     background: #6F4E37;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     z-index: 9999;
     transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
 }
 
 /* Pop-up Window (Modal) Background Overlay */
 .modal-overlay {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.6);
@@ -238,7 +245,6 @@ body {
     width: 90%;
     position: relative;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    font-family: sans-serif;
     color: #333;
 }
 .close-btn {
