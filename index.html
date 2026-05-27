@@ -170,26 +170,27 @@
             </div>
         </div>
 
-        <div class="review-form-box">
-            <h3>Leave Your Review & Rate Us</h3>
-            <form id="reviewForm" onsubmit="handleReviewSubmit(event)">
-                <input type="text" id="reviewerName" placeholder="Your Name" required>
-                
-                <div class="rating-input-group">
-                    <span>Select Rating: </span>
-                    <select id="reviewerRating">
-                        <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
-                        <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
-                        <option value="3">⭐⭐⭐ (3 Stars)</option>
-                        <option value="2">⭐⭐ (2 Stars)</option>
-                        <option value="1">⭐ (1 Star)</option>
-                    </select>
-                </div>
-                
-                <textarea id="reviewerText" rows="4" placeholder="Type your experience here... How was our service?" required></textarea>
-                <button type="submit" class="btn">Submit Review</button>
-            </form>
+       <div class="review-form-box">
+    <h3>Leave Your Review & Rate Us</h3>
+    <form action="https://formspree.io/f/dhruvagarwal643@gmail.com" method="POST" id="reviewForm">
+        
+        <input type="text" name="Customer Name" id="reviewerName" placeholder="Your Name" required>
+        
+        <div class="rating-input-group">
+            <span>Select Rating: </span>
+            <select name="Rating Stars" id="reviewerRating">
+                <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+                <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+                <option value="3">⭐⭐⭐ (3 Stars)</option>
+                <option value="2">⭐⭐ (2 Stars)</option>
+                <option value="1">⭐ (1 Star)</option>
+            </select>
         </div>
+        
+        <textarea name="Review Message" id="reviewerText" rows="4" placeholder="Type your experience here... How was our service?" required></textarea>
+        <button type="submit" class="btn">Submit Review</button>
+    </form>
+</div>
     </section>
 
     <footer class="footer">
