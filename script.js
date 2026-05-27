@@ -125,9 +125,11 @@ function resetCart() {
     toggleCartModal();
 }
 
-// 7. INTERACTIVE CUSTOMER REVIEWS FEEDBACK SYSTEM
+// ========================================== //
+// 7. INTERACTIVE CUSTOMER REVIEWS SYSTEM    //
+// ========================================== //
 function handleReviewSubmit(event) {
-    event.preventDefault();
+    // Note: We removed event.preventDefault() so the data can send to Formspree!
     
     const nameInput = document.getElementById('reviewerName').value;
     const ratingInput = parseInt(document.getElementById('reviewerRating').value);
@@ -152,9 +154,15 @@ function handleReviewSubmit(event) {
     `;
     
     // Insert new card right at top of review grid container
-    reviewsList.insertBefore(newReviewCard, reviewsList.firstChild);
+    if (reviewsList) {
+        reviewsList.insertBefore(newReviewCard, reviewsList.firstChild);
+    }
     
-    // Flash clear entries
-    document.getElementById('reviewForm').reset();
-    alert("Thank you! Your feedback score was saved and published live below.");
+    alert("Thank you! Your review has been pinned live on the site and dispatched to our email inbox.");
+}
+
+// Attach the execution watcher directly to your form asset
+const rForm = document.getElementById('reviewForm');
+if (rForm) {
+    rForm.addEventListener('submit', handleReviewSubmit);
 }
