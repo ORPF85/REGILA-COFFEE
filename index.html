@@ -55,19 +55,19 @@
                 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=400" alt="Hot Latte">
                 <h3>Hot Caffe Latte</h3>
                 <p class="price">$4.50</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" data-name="Hot Caffe Latte" data-price="4.50" onclick="addToCart(this)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=400" alt="Cappuccino">
                 <h3>Cappuccino</h3>
                 <p class="price">$4.99</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" data-name="Cappuccino" data-price="4.99" onclick="addToCart(this)">Add to Cart</button>
             </div>
             <div class="menu-item">
                 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=400" alt="Espresso">
                 <h3>Espresso Shot</h3>
                 <p class="price">$3.00</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <button class="add-to-cart" data-name="Espresso Shot" data-price="3.00" onclick="addToCart(this)">Add to Cart</button>
             </div>
         </div>
     </section>
@@ -93,6 +93,42 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
         </div>
     </footer>
+
+    <div id="floating-cart" onclick="toggleCartModal()">
+        <span class="cart-icon">🛒</span>
+        <span id="cart-count">0</span>
+    </div>
+
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleCartModal()">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            
+            <div id="cart-items-container">
+                <p class="empty-msg">Your cart is empty.</p>
+            </div>
+            
+            <hr>
+            
+            <div class="cart-summary">
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                
+                <div class="payment-method">
+                    <h4>Select Payment Method:</h4>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="online" checked>
+                        <span>Online Payment (Card/UPI)</span>
+                    </label>
+                    <label class="payment-option">
+                        <input type="radio" name="payment" value="cod">
+                        <span>Cash on Delivery (COD)</span>
+                    </label>
+                </div>
+                
+                <button id="checkout-btn" onclick="processCheckout()">Proceed to Pay</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
